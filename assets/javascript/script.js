@@ -13,12 +13,12 @@ var upperCasedCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  // Prompt user for password length and return an integer
+  // Prompt user for password length and return an integer (store in a variable)
   var pwdLength = parseInt(prompt("Please specify the length of your password - enter a number between 8 and 128."));
     // If user chose incorrect number alert (not a number, lesser than 8, bigger than 128)
     if (pwdLength === isNaN || pwdLength < 8 || pwdLength > 128) {
       alert("Please enter a valid number between 8 and 128.");
-    // If user chose correct number, confirm the kind of characters
+    // If user chose correct number, confirm the kind of characters and store in a variable
     } else {
       var lowerCase = confirm("Would you like your new password to include lowercase characters?");
       var upperCase = confirm("Would you like your new password to include lowercase characters?");
@@ -33,7 +33,9 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(lowerCase, upperCase, numbers, specialChar, pwdLength) {
-  
+  // Variable for the final password
+  // for loop with if and else statements for user choices of characters using Math.random(), store each in a variable and add to the final password
+  // return final password
 }
 
 // Function to generate password with user input
