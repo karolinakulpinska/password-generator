@@ -16,6 +16,7 @@ var upperCase;
 var numbers;
 var specialChar;
 var pwdFinal;
+var userConfirm;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -68,7 +69,12 @@ function getRandom(lowerCase, upperCase, numbers, specialChar, pwdLength) {
 
 // Function to generate password with user input
 function generatePassword() {
-
+  // Confirm if user wants to generate a random password (store in a variable)
+  userConfirm = confirm("Would you like to generate a random password?");
+  // If yes, alert of the password options (getPasswordOptions function)
+  if (userConfirm) {
+    return getPasswordOptions();
+  }
 }
 
 // Get references to the #generate element
