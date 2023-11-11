@@ -21,14 +21,14 @@ var userConfirm;
 // Function to prompt user for password options
 function getPasswordOptions() {
   // Prompt user for password length and return an integer (store in a variable)
-  pwdLength = parseInt(prompt("Please specify the length of your password - enter a number between 8 and 128."));
+  pwdLength = prompt("Please specify the length of your password - enter a number between 8 and 128.");
     // If user chose incorrect number alert (not a number, lesser than 8, bigger than 128)
     if (pwdLength === isNaN || pwdLength < 8 || pwdLength > 128) {
       alert("Please enter a valid number between 8 and 128.");
     // If user chose correct number, confirm the kind of characters and store in a variable
     } else {
       lowerCase = confirm("Would you like your new password to include lowercase characters?");
-      upperCase = confirm("Would you like your new password to include lowercase characters?");
+      upperCase = confirm("Would you like your new password to include uppercase characters?");
       numbers = confirm("Would you like your new password to include numbers?");
       specialChar = confirm("Would you like your new password to include special characters?");
       // If user chose correct number and at least one option of characters, return
@@ -41,25 +41,26 @@ function getPasswordOptions() {
 // Function for getting a random element from an array
 function getRandom(lowerCase, upperCase, numbers, specialChar, pwdLength) {
   // for loop with if statements for user choices of characters using Math.random(), store each in a variable and add to the final password
-  for (var i = 0; i < pwdLength.length; i++) {
+  pwdFinal = "";
+  for (var i = 0; i < pwdLength; i++) {
     // lower case
-    if (lowerCase && pwdFinal.length) {
-      var index = lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length)];
+    if (lowerCase && pwdFinal.length < pwdLength) {
+      var index = Math.floor(Math.random()*lowerCasedCharacters.length);
       pwdFinal += lowerCasedCharacters[index];
     };
     // upper case
-    if (upperCase && pwdFinal.length) {
-      var index = upperCasedCharacters[Math.floor(Math.random()*upperCasedCharacters.length)];
+    if (upperCase && pwdFinal.length < pwdLength) {
+      var index = Math.floor(Math.random()*upperCasedCharacters.length);
       pwdFinal += upperCasedCharacters[index];
     };
     // numbers
-    if (numbers && pwdFinal.length) {
-      var index = numericCharacters[Math.floor(Math.random()*numericCharacters.length)];
+    if (numbers && pwdFinal.length < pwdLength) {
+      var index = Math.floor(Math.random()*numericCharacters.length);
       pwdFinal += numericCharacters[index];
     };
     // special characters
-    if (specialChar && pwdFinal.length) {
-      var index = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];
+    if (specialChar && pwdFinal.length < pwdLength) {
+      var index = Math.floor(Math.random()*specialCharacters.length);
       pwdFinal += specialCharacters[index];
     }
   }
@@ -75,7 +76,9 @@ function generatePassword() {
   if (userConfirm) {
     return getPasswordOptions();
   }
+  return "";
 }
+console.log(writePassword());
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
