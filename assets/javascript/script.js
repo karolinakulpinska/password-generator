@@ -10,14 +10,30 @@ var lowerCasedCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k
 // Array of uppercase characters to be included in password
 var upperCasedCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
+
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  // Prompt user for password length and return an integer
+  var pwdLength = parseInt(prompt("Please specify the length of your password - enter a number between 8 and 128."));
+    // If user chose incorrect number alert (not a number, lesser than 8, bigger than 128)
+    if (pwdLength === isNaN || pwdLength < 8 || pwdLength > 128) {
+      alert("Please enter a valid number between 8 and 128.");
+    // If user chose correct number, confirm the kind of characters
+    } else {
+      var lowerCase = confirm("Would you like your new password to include lowercase characters?");
+      var upperCase = confirm("Would you like your new password to include lowercase characters?");
+      var numbers = confirm("Would you like your new password to include numbers?");
+      var specialChar = confirm("Would you like your new password to include special characters?");
+      // If user chose correct number and at least one option of characters, return
+        if (lowerCase || upperCase || numbers || specialChar) {
+          return getRandom(lowerCase, upperCase, numbers, specialChar, pwdLength);
+        }
+    }
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {
-
+function getRandom(lowerCase, upperCase, numbers, specialChar, pwdLength) {
+  
 }
 
 // Function to generate password with user input
