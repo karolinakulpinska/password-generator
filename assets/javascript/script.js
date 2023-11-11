@@ -15,17 +15,17 @@ var lowerCase;
 var upperCase;
 var numbers;
 var specialChar;
-var pwdFinal;
+var pwdFinal = "";
 var userConfirm;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  // Prompt user for password length and return an integer (store in a variable)
+  // Prompt user for password length and store in a variable
   pwdLength = prompt("Please specify the length of your password - enter a number between 8 and 128.");
-    // If user chose incorrect number alert (not a number, lesser than 8, bigger than 128)
-    if (pwdLength === isNaN || pwdLength < 8 || pwdLength > 128) {
+    // If user chose incorrect number, alert (lesser than 8, bigger than 128)
+    if (pwdLength < 8 || pwdLength > 128) {
       alert("Please enter a valid number between 8 and 128.");
-    // If user chose correct number, confirm the kind of characters and store in a variable
+    // If user chose correct number, confirm the kind of characters and store in variables
     } else {
       lowerCase = confirm("Would you like your new password to include lowercase characters?");
       upperCase = confirm("Would you like your new password to include uppercase characters?");
@@ -33,15 +33,14 @@ function getPasswordOptions() {
       specialChar = confirm("Would you like your new password to include special characters?");
       // If user chose correct number and at least one option of characters, return
         if (lowerCase || upperCase || numbers || specialChar) {
-          return getRandom(lowerCase, upperCase, numbers, specialChar, pwdLength);
+          return getRandom(lowerCase, upperCase, numbers, specialChar);
         }
     }
 }
 
 // Function for getting a random element from an array
-function getRandom(lowerCase, upperCase, numbers, specialChar, pwdLength) {
+function getRandom(lowerCase, upperCase, numbers, specialChar) {
   // for loop with if statements for user choices of characters using Math.random(), store each in a variable and add to the final password
-  pwdFinal = "";
   for (var i = 0; i < pwdLength; i++) {
     // lower case
     if (lowerCase && pwdFinal.length < pwdLength) {
@@ -76,9 +75,7 @@ function generatePassword() {
   if (userConfirm) {
     return getPasswordOptions();
   }
-  return "";
 }
-console.log(writePassword());
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
